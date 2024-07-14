@@ -1,0 +1,635 @@
+/*
+Scripting 2
+Assignment 1
+Name: Alexander Liew 
+Pem Group: 1
+Admin Number: 191755G
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: hero-new, sans-serif;
+}
+/* Type */
+h1{
+    font-weight: 600;
+    font-size: 27px;
+    color: #423e37;
+}
+h2{
+    font-weight: 600;
+}
+h3{
+    font-weight: 500;
+}
+.time{
+    font-size: 14px;
+}
+.temperature{
+    font-size: 60px;
+    font-weight: 700;
+}
+/* UI Elements */
+.backbutton {
+	background: url(../imgs/ui%20elements.svg) no-repeat -32px 0;
+	width: 24px;
+	height: 17px;
+    cursor: pointer;
+}
+.hamburger{
+	background: url(../imgs/ui%20elements.svg) no-repeat 0 0;
+	width: 23px;
+	height: 18px;
+    float: right;
+    cursor: pointer;
+}
+.home {
+	background: url('../imgs/ui%20elements.svg') no-repeat -31px -27px;
+	width: 25px;
+	height: 27px;
+    margin-right: 10px;
+}
+.pin {
+	background: url('../imgs/ui%20elements.svg') no-repeat 0 -63px;
+	width: 15px;
+	height: 23px;
+    margin: 0 15px 0 5px;
+}
+.close {
+	background: url('../imgs/ui%20elements.svg') no-repeat -34px -67px;
+	width: 19px;
+	height: 18px;
+    float: right;
+    cursor: pointer;
+}
+/* Select all pins (Excluding the pins in side-navigation) */
+div[class*="mapPin"]{
+    position: absolute;
+    background: url(../imgs/ui%20elements.svg) no-repeat 0 -31px;
+	width: 15px;
+	height: 23px;
+    cursor: pointer;
+    transition: .5s;
+}
+/* Weather */
+.sunny{
+    background: url('../imgs/weather.png') no-repeat -1596px -2px;
+	width: 583px;
+	height: 511px;
+    top: -85px;
+    left: 10px;
+}
+.windy {
+	background: url('../imgs/weather.png') no-repeat -2305px -791px;
+	width: 583px;
+	height: 431px;
+    top: -25px;
+    left: 10px;
+}
+.cloudy,.partly-cloudy-_day_,.partly-cloudy-_night_ {
+	background: url('../imgs/weather.png') no-repeat -1575px -1541px;
+	width: 613px;
+	height: 508px;
+    top: -80px;
+    left: 0px;
+}
+.passing-showers {
+	background: url('../imgs/weather.png') no-repeat -2305px 0;
+	width: 641px;
+	height: 512px;
+    top: -80px;
+    left: -10px;
+}
+.light-rain{
+	background: url('../imgs/weather.png') no-repeat -825px 0;
+	width: 583px;
+	height: 513px;
+    top: -85px;
+    left: 10px;
+}
+.moderate-rain, .showers {
+	background: url('../imgs/weather.png') no-repeat -825px -710px;
+	width: 583px;
+	height: 514px;
+    top: -85px;
+    left: 10px;
+}
+.heavy-rain,.heavy-showers {
+	background: url('../imgs/weather.png') no-repeat -852px -1541px;
+	width: 583px;
+	height: 512px;
+    top: -85px;
+    left: 10px;
+}
+.thundery-showers{
+	background: url('../imgs/weather.png') no-repeat 0 0;
+	width: 583px;
+	height: 513px;
+    top: -85px;
+    left: 10px;
+}
+.heavy-thundery-showers {
+	background: url('../imgs/weather.png') no-repeat -13px -712px;
+	width: 583px;
+	height: 510px;
+    top: -85px;
+    left: 10px;
+}
+.heavy-thundery-showers-with-gusty-winds {
+	background: url('../imgs/weather.png') no-repeat -13px -1544px;
+	width: 653px;
+	height: 506px;
+    top: -70px;
+    left: -15px;
+}
+/* Banner */
+#bannerWrapper{
+    overflow: hidden;
+    height: 720px;
+    width: 432px;
+    max-width: 432px;
+    position: relative;
+}
+.scene{
+    background: white;
+    height: 720px;
+    width: 432px;
+    overflow: hidden;
+}
+/* Side-navigation */
+.sideNav{
+    position: absolute;
+    background: #423e37;
+    right: 0;
+    color: white;
+    height: 720px;
+    width: 30vh;
+    padding: 2rem 2rem;
+    z-index: 5;
+    transition: all .3s;
+}
+/* Hide side-navigation*/
+.hide{
+    right: -300px;
+}
+ul{
+    text-decoration: none;
+    list-style: none;
+}
+li{
+    margin: 50px 0;
+    color: white;
+    font-size: 1.4em;
+    font-weight: 500;
+    display: flex;
+}
+/* Listing clickables */
+#home,#West,#North,#Central,#northEast,#southEast,.btn{
+    cursor: pointer;
+}
+/* Home Page */
+.space{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+#home-scene .backbutton{
+    display: none;
+}
+#home-scene .space{
+    justify-content: flex-end;
+}
+.area{
+    width: 85%;
+    margin: 20px auto;
+}
+.area img{
+    margin-top: 20px;
+    width: 100%;
+}
+.map{
+    position: relative;
+}
+div[class*="mapPin"] p{
+    margin-top: 25px;
+    font-size: 12px;
+}
+.mapPinWest{
+    top: 80px;
+    left: 70px;
+}
+.mapPinNorth{
+    top: 40px;
+    left: 140px;
+}
+.mapPinCentral{
+    top: 120px;
+    left: 190px;
+}
+.mapPinnorthEast{
+    top: 50px;
+    left: 275px;
+}
+.mapPinsouthEast{
+    top: 100px;
+    left: 250px;
+}
+div[class*="mapPin"]:hover{
+    transform: scale(1.1);
+}
+.sgWeather{
+    position: relative;
+    max-height: 340px;
+    height: 340px;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+    background: #7161ef;
+    box-shadow: 0px -2px 18px #888888;
+    width: 100%;
+    color: white;
+    padding: 50px 0;
+}
+.textArea{
+    width: 90%;
+    margin: 0 auto;
+}
+.textArea h2{
+    padding-bottom: 10px;
+}
+.weather{
+    text-transform: capitalize;
+}
+.weatherArt{
+    position: absolute;
+    transform: scale(0.4);
+}
+/* Menu Scene */
+.westMap,.northMap,.centralMap,.north-eastMap,.south-eastMap{
+    width: 230px;
+    height: 200px;
+    margin: 20px auto;
+    position: relative;
+}
+/* Region */
+.west{
+    background: url('../imgs/west.svg') no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 250px;
+    left: -50px;
+    top: -40px;
+    position: relative;
+    transform: scale(0.8);
+}
+.north{
+    background: url('../imgs/north.svg') no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform: scale(1.2);
+    left: 30px;
+    top: -20px;
+}
+.central{
+    background: url('../imgs/central.svg') no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 300px;
+    top: -70px;
+    position: relative;
+    transform: scale(0.8);
+}
+.north-east{
+	background: url('../imgs/northEast.svg') no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+.south-east{
+    background: url('../imgs/southEast.svg') no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 200px;
+    left: -50px;
+    position: relative;
+}
+/* Pin Map */
+.westMap .mapPin0{
+    top: 60px;
+    left: 79px;
+}
+.westMap .mapPin1{
+    top: 74px;
+    left: 124px;
+}
+.westMap .mapPin2{
+    top: 140px;
+    left: 150px;
+}
+.northMap .mapPin0{
+    top: -20px;
+    left: 43px;
+}
+.northMap .mapPin1{
+    top: -24px;
+    left: 170px;
+}
+.northMap .mapPin2{
+    top: 30px;
+    left: 140px;
+}
+.centralMap .mapPin0{
+    top: 50px;
+    left: 50px;
+}
+.centralMap .mapPin1{
+    top: 142px;
+    left: 77px;
+}
+.centralMap .mapPin2{
+    top: -24px;
+    left: 149px;
+}
+.north-eastMap .mapPin0{
+    top: 70px;
+    left: 150px;
+}
+.north-eastMap .mapPin1{
+    top: 40px;
+    left: 46px;
+}
+.north-eastMap .mapPin2{
+    top: 130px;
+    left: 100px;
+}
+.south-eastMap .mapPin0{
+    top: 143px;
+    left: 53px;
+}
+.south-eastMap .mapPin1{
+    top: 84px;
+    left: 114px;
+}
+.south-eastMap .mapPin2{
+    top: 10px;
+    left: 182px;
+}
+/* Cards */
+.cardArea{
+    display: flex;
+    height: 300px;
+    color: white;
+}
+.card{
+    position: absolute;
+    left: 90px;
+    width: 250px;
+    height: 300px;
+    border-radius: 2rem;
+    z-index: 3;
+    transition: all .9s;
+}
+.cardplace{
+    padding: 90px 20px 0 20px;
+}
+.cardplace .temperature{
+    font-size: 40px;
+}
+.btn{
+    margin-top: 20px;
+    width: 170px;
+    padding: .8rem .3rem;
+    border-radius: 1rem;
+    background: #423e37;
+    text-align: center;
+}
+.left{
+    left: 10px;
+    transform: scale(0.8);
+    z-index: 1;
+}
+.farleft{
+    left: -20px;
+    transform: scale(0.7);
+    z-index: 0;
+}
+.right{
+    left: 180px;
+    transform: scale(0.8);
+    z-index: 1;
+}
+.farright{
+    left: 210px;
+    transform: scale(0.7);
+    z-index: 0;
+}
+/* Card Images */
+#westCard #card0{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/jurongCentral1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#westCard #card1{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/jurongLake1.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#westCard #card2{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/westCoast1.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#northCard #card0{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/woodlands1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#northCard #card1{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/sembawang1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#northCard #card2{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/yishun1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#centralCard #card0{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/bishan1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#centralCard #card1{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/marina1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#centralCard #card2{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/punggol1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#north-eastCard #card0{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/pasirris1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#north-eastCard #card1{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/redbridge1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#north-eastCard #card2{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/tampines1.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#south-eastCard #card0{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/eastCoast1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#south-eastCard #card1{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/bedok1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#south-eastCard #card2{
+    background: linear-gradient(rgba(66,62,55,0), rgba(66,62,55,0.7)), url(../imgs/village1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* Place Info */
+.place{
+    text-align: center;
+    padding: 40px 0 40px; 0;
+    color: #423e37;
+}
+.placeInfo{
+    background: url(../imgs/bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 570px;
+}
+.placeWeather{
+    top: 40px;
+    position: relative;
+    color: white;
+}
+.placeWeather .weatherArt{
+    top: -130px;
+    left: -10px;
+}
+.placeWeather .windy{
+    top: -100px;
+    left: 10px;
+}
+.image{
+    padding-top: 10px;
+    display: flex;
+}
+/* Images */
+div[class*="img"]{
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    width: 200px;
+    height: 140px;
+    border-radius: 1rem;
+}
+.jurongCentral1{
+    background: url(../imgs/jurongCentral1.JPG) no-repeat;
+}
+.jurongCentral2{
+    background: url(../imgs/jurongCentral2.JPG) no-repeat;
+}
+.jurongLake1{
+    background: url(../imgs/jurongLake1.png) no-repeat;
+}
+.jurongLake2{
+    background: url(../imgs/jurongLake2.jpg) no-repeat;
+}
+.westCoast1{
+    background: url(../imgs/westCoast1.png) no-repeat;
+}
+.westCoast2{
+    background: url(../imgs/westCoast2.jpg) no-repeat;
+}
+.woodlands1{
+    background: url(../imgs/woodlands1.jpg) no-repeat;
+}
+.woodlands2{
+    background: url(../imgs/woodlands2.jpg) no-repeat;
+}
+.sembawang1{
+    background: url(../imgs/woodlands1.jpg) no-repeat;
+}
+.sembawang2{
+    background: url(../imgs/woodlands2.jpg) no-repeat;
+}
+.yishun1{
+    background: url(../imgs/yishun1.jpg) no-repeat;
+}
+.yishun2{
+    background: url(../imgs/yishun2.jpg) no-repeat;
+}
+.marina1{
+    background: url(../imgs/marina1.jpg) no-repeat;
+}
+.marina2{
+    background: url(../imgs/marina2.jpg) no-repeat;
+}
+.bishan1{
+    background: url(../imgs/bishan1.jpg) no-repeat;
+}
+.bishan2{
+    background: url(../imgs/Bishan2.jpg) no-repeat;
+}
+.punggol1{
+    background: url(../imgs/punggol1.jpg) no-repeat;
+}
+.punggol2{
+    background: url(../imgs/punggol2.jpg) no-repeat;
+}
+.pasirris1{
+    background: url(../imgs/pasirris1.JPG) no-repeat;
+}
+.pasirris2{
+    background: url(../imgs/pasirris2.jpg) no-repeat;
+}
+.redbridge1{
+    background: url(../imgs/redbridge1.jpg) no-repeat;
+}
+.redbridge2{
+    background: url(../imgs/redbridge2.jpg) no-repeat;
+}
+.tampines1{
+    background: url(../imgs/tampines1.png) no-repeat;
+}
+.tampines2{
+    background: url(../imgs/tampines2.jpg) no-repeat;
+}
+.eastCoast1{
+    background: url(../imgs/eastCoast1.jpg) no-repeat;
+}
+.eastCoast2{
+    background: url(../imgs/eastCoast2.jpg) no-repeat;
+}
+.bedok1{
+    background: url(../imgs/bedok1.jpg) no-repeat;
+}
+.bedok2{
+    background: url(../imgs/bedok2.jpg) no-repeat;
+}
+.village1{
+    background: url(../imgs/village1.jpg) no-repeat;
+}
+.village2{
+    background: url(../imgs/village2.jpg) no-repeat;
+}

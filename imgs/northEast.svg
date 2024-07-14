@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="60" viewBox="0 0 69 60">
+  <defs>
+    <clipPath id="clip-northEast">
+      <rect width="69" height="60"/>
+    </clipPath>
+  </defs>
+  <g id="northEast" clip-path="url(#clip-northEast)">
+    <g id="Group_6" data-name="Group 6" transform="translate(-23.249 1)">
+      <path id="SGP4874" d="M775.359,122.448l-3.408,6.744-7.677,6.385-8.932,3.8v7.677l-3.193,10.869H745.12l-5.094-4.484-12.77-5.74-10.833-3.838-8.322-6.385L709.391,126l1.9-10.223,3.838-9.578,4.628-6.1,22.707,11.335,27.944,9.9,4.95,1.112Z" transform="translate(-683.851 -100.1)" fill="#b79ced" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
